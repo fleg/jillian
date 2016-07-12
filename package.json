@@ -1,0 +1,19 @@
+{
+  "name": "jillian",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec --bail"
+  },
+  "author": "Aleksey Timchenko <flegmatik.bel@gmail.com> (http://flegdev.ru/)",
+  "license": "MIT",
+  "dependencies": {
+    "jsonschema": "fleg/jsonschema#3678f14b41864ec96b5ae663d7b9e2fe59f4941e"
+  },
+  "devDependencies": {
+    "expect.js": "0.3.1",
+    "mocha": "2.5.3",
+    "underscore": "^1.8.3"
+  }
+}
