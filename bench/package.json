@@ -1,0 +1,9 @@
+{
+  "name": "jillian-bench",
+  "private": true,
+  "dependencies": {
+    "benchmark": "2.1.1",
+    "conform": "0.2.14",
+    "microtime": "2.1.1"
+  }
+}

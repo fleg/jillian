@@ -12,7 +12,8 @@
   "scripts": {
     "lint": "eslint ./",
     "test": "mocha --reporter spec --bail test/suite.js test/*",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "bench": "node bench/index.js"
   },
   "dependencies": {
     "jsonschema": "fleg/jsonschema"
