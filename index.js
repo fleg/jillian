@@ -43,11 +43,14 @@ module.exports = function(instance, schema, options) {
 	options = options || {};
 	options.coercions = Boolean(options.coercions);
 	options.throwError = Boolean(options.throwError);
+	options.objectMode = Boolean(options.objectMode);
+	options.refs = options.refs || [];
 
-	var result = validator.validate(instance, {
-		type: 'object',
-		properties: schema
-	}, {
+	options.refs.forEach(function(ref) {
+		validator.addSchema(ref);
+	});
+
+	var result = validator.validate(instance, schema, {
 		preValidateProperty: function(instance, property, schema) {
 			if (options.coercions && coercionsHash[schema.type]) {
 				instance[property] = coercionsHash[schema.type](instance[property]);

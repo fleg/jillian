@@ -34,7 +34,7 @@ describe('coercions', function() {
 						expect(function() {
 							jillian(
 								{foo: value},
-								{foo: {type: type, required: true}},
+								{properties: {foo: {type: type, required: true}}},
 								{coercions: true, throwError: true}
 							);
 						}).to.not.throwError();
@@ -49,7 +49,7 @@ describe('coercions', function() {
 						expect(function() {
 							jillian(
 								{foo: value},
-								{foo: {type: type, required: true}},
+								{properties: {foo: {type: type, required: true}}},
 								{coercions: true, throwError: true}
 							);
 						}).to.throwError();

@@ -5,12 +5,16 @@ var jillian = require('../index.js'),
 
 describe('common', function() {
 	it('should be ok without options', function() {
-		var result = jillian({foo: 1}, {foo: {type: 'integer'}});
-		expect(result.errors).to.be.empty();
+		expect(jillian(
+			{foo: 1},
+			{properties: {foo: {type: 'integer'}}}
+		).valid).to.be.ok();
 	});
 
 	it('should return errors', function() {
-		var result = jillian({foo: '1'}, {foo: {type: 'integer'}});
-		expect(result.errors).to.have.length(1);
+		expect(jillian(
+			{foo: '1'},
+			{properties: {foo: {type: 'integer'}}}
+		).valid).not.ok(1);
 	});
 });

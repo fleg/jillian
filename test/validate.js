@@ -10,31 +10,31 @@ describe('validate', function() {
 
 	it('should be ok without validate', function() {
 		expect(function() {
-			jillian({
-				foo: 1
-			}, {
-				foo: {type: 'integer'}
-			}, {throwError: true});
+			jillian(
+				{foo: 1},
+				{properties: {foo: {type: 'integer'}}},
+				{throwError: true}
+			);
 		}).to.not.throwError();
 	});
 
 	it('should pass validate', function() {
 		expect(function() {
-			jillian({
-				foo: 1
-			}, {
-				foo: {type: 'integer', validate: validate}
-			}, {throwError: true});
+			jillian(
+				{foo: 1},
+				{properties: {foo: {type: 'integer', validate: validate}}},
+				{throwError: true}
+			);
 		}).to.not.throwError();
 	});
 
 	it('should not pass validate', function() {
 		expect(function() {
-			jillian({
-				foo: 100
-			}, {
-				foo: {type: 'integer', validate: validate}
-			}, {throwError: true});
+			jillian(
+				{foo: 100},
+				{properties: {foo: {type: 'integer', validate: validate}}},
+				{throwError: true}
+			);
 		}).to.throwError(/property `foo` hasn't pass check/);
 	});
 });
