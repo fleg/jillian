@@ -11,7 +11,7 @@ var coercionsHash = {
 		}
 	},
 	number: function(value) {
-		if (!isNaN(Number(value))) {
+		if (isFinite(value)) {
 			return Number(value);
 		} else {
 			return value;
