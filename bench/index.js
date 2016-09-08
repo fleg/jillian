@@ -2,6 +2,7 @@
 
 var Benchmark = require('benchmark'),
 	conform = require('conform'),
+	Ajv = require('ajv'),
 	jillian = require('../index');
 
 var suite = new Benchmark.Suite();
@@ -16,14 +17,13 @@ var obj = {
 
 var schema = {
 	properties: {
-		foo: {type: 'integer', required: true},
+		foo: {type: 'integer'},
 		bar: {
 			type: 'object',
 			properties: {
-				foobar: {type: 'string', required: true},
+				foobar: {type: 'string'},
 				baz: {
 					type: 'array',
-					required: true,
 					maxLength: 10,
 					uniqueItems: true,
 					items: {type: 'integer'}
@@ -31,9 +31,14 @@ var schema = {
 			}
 		}
 	}
-}
+};
+
+var ajv = new Ajv().compile(schema);
 
 suite
+	.add('ajv', function() {
+		ajv(obj)
+	})
 	.add('conform', function() {
 		conform.validate(obj, schema);
 	})

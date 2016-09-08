@@ -2,6 +2,7 @@
   "name": "jillian-bench",
   "private": true,
   "dependencies": {
+    "ajv": "4.7.0",
     "benchmark": "2.1.1",
     "conform": "0.2.14",
     "microtime": "2.1.1"
