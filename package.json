@@ -3,17 +3,21 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "author": "Aleksey Timchenko <flegmatik.bel@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fleg/jillian.git"
+  },
   "scripts": {
     "test": "mocha --reporter spec --bail"
   },
-  "author": "Aleksey Timchenko <flegmatik.bel@gmail.com> (http://flegdev.ru/)",
-  "license": "MIT",
   "dependencies": {
-    "jsonschema": "fleg/jsonschema#3678f14b41864ec96b5ae663d7b9e2fe59f4941e"
+    "jsonschema": "fleg/jsonschema"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
-    "mocha": "2.5.3",
-    "underscore": "^1.8.3"
+    "mocha": "3.0.2",
+    "underscore": "1.8.3"
   }
 }

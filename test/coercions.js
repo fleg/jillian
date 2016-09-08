@@ -17,13 +17,20 @@ describe('coercions', function() {
 			var schema = {
 				type: 'object',
 				properties: {
-					foo: {type: 'type', required: true}
+					foo: {type: type, required: true}
 				}
 			};
 			_(suite).each(function(value) {
-				it((typeof value) + ' `' + value + '`', function() {
+				it('should be ok with ' + (typeof value) + ' `' + value + '`', function() {
 					expect(function() {
-						jillian({foo: value}, schema);
+						jillian({
+							foo: value
+						}, {
+							foo: {type: type, required: true}
+						}, {
+							coercions: true,
+							throwError: true
+						});
 					}).to.not.throwError();
 				});
 			});

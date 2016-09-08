@@ -11,7 +11,7 @@ var coercionsHash = {
 		}
 	},
 	'number': function(value) {
-		if (!isNan(Number(value))) {
+		if (!isNaN(Number(value))) {
 			return Number(value);
 		} else {
 			return value;
@@ -37,18 +37,37 @@ var coercionsHash = {
 	}
 };
 
-var preValidateProperty = function(instance, property, schema, options, ctx) {
-	if (coercionsHash[schema.type]) {
-		instance[property] = coercionsHash[schema.type](instance[property]);
-	}
-};
-
-module.exports = function(instance, schema) {
+module.exports = function(instance, schema, options) {
 	var validator = new Validator();
 
-	var result = validator.validate(instance, schema, {
-		preValidateProperty: preValidateProperty,
-		throwError: true
+	options = options || {};
+	options.coercions = Boolean(options.coercions);
+	options.throwError = Boolean(options.throwError);
+
+	var result = validator.validate(instance, {
+		type: 'object',
+		properties: schema
+	}, {
+		preValidateProperty: function(instance, property, schema) {
+			if (options.coercions && coercionsHash[schema.type]) {
+				instance[property] = coercionsHash[schema.type](instance[property]);
+			}
+		},
+		postValidateProperty: function(instance, property, schema) {
+			if (typeof schema.validate === 'function') {
+				var ok = schema.validate(instance[property], instance, property);
+				if (!ok) {
+					return 'property `' + property +
+						'` hasn\'t pass check:\n' + schema.validate.toString() + '\n' +
+						'actual value is `' + instance[property] + '`';
+				}
+			}
+
+			if (typeof schema.filter === 'function') {
+				instance[property] = schema.filter(instance[property]);
+			}
+		},
+		throwError: options.throwError
 	});
 
 	return result;
