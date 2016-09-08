@@ -10,17 +10,30 @@
     "url": "git+https://github.com/fleg/jillian.git"
   },
   "scripts": {
+    "lint": "eslint ./",
     "test": "mocha --reporter spec --bail",
-    "lint": "eslint ./"
+    "coverage": "nyc npm run test"
   },
   "dependencies": {
     "jsonschema": "fleg/jsonschema"
   },
   "devDependencies": {
+    "coveralls": "2.11.12",
     "eslint": "3.4.0",
     "eslint-config-dvpnt": "1.1.0",
     "expect.js": "0.3.1",
     "mocha": "3.0.2",
+    "nyc": "8.1.0",
     "underscore": "1.8.3"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "exclude": [
+      "node_modules/**",
+      "test/**"
+    ]
   }
 }
