@@ -43,7 +43,7 @@ module.exports = function(instance, schema, options) {
 	options = options || {};
 	options.coercions = Boolean(options.coercions);
 	options.throwError = Boolean(options.throwError);
-	options.objectMode = Boolean(options.objectMode);
+	options.defaultValue = Boolean(options.defaultValue);
 	options.refs = options.refs || [];
 
 	options.refs.forEach(function(ref) {
@@ -54,6 +54,10 @@ module.exports = function(instance, schema, options) {
 		preValidateProperty: function(instance, property, schema) {
 			if (options.coercions && coercionsHash[schema.type]) {
 				instance[property] = coercionsHash[schema.type](instance[property]);
+			}
+
+			if (options.defaultValue && schema['default']) {
+				instance[property] = schema['default'];
 			}
 		},
 		postValidateProperty: function(instance, property, schema) {
