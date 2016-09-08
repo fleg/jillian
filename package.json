@@ -10,12 +10,15 @@
     "url": "git+https://github.com/fleg/jillian.git"
   },
   "scripts": {
-    "test": "mocha --reporter spec --bail"
+    "test": "mocha --reporter spec --bail",
+    "lint": "eslint ./"
   },
   "dependencies": {
     "jsonschema": "fleg/jsonschema"
   },
   "devDependencies": {
+    "eslint": "3.4.0",
+    "eslint-config-dvpnt": "1.1.0",
     "expect.js": "0.3.1",
     "mocha": "3.0.2",
     "underscore": "1.8.3"

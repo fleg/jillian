@@ -3,14 +3,14 @@
 var Validator = require('jsonschema').Validator;
 
 var coercionsHash = {
-	'integer': function(value) {
+	integer: function(value) {
 		if (Number(value) === parseInt(value, 10)) {
 			return parseInt(value, 10);
 		} else {
 			return value;
 		}
 	},
-	'number': function(value) {
+	number: function(value) {
 		if (!isNaN(Number(value))) {
 			return Number(value);
 		} else {
@@ -18,11 +18,11 @@ var coercionsHash = {
 		}
 	},
 	'boolean': function(value) {
-		if ('true' === value || '1' === value || 1 === value) {
+		if (value === 'true' || value === '1' || value === 1) {
 			return true;
 		}
 
-		if ('false' === value || '0' === value || 0 === value) {
+		if (value === 'false' || value === '0' || value === 0) {
 			return false;
 		}
 

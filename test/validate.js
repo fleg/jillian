@@ -1,7 +1,6 @@
 'use strict';
 
 var jillian = require('../index.js'),
-	_ = require('underscore'),
 	expect = require('expect.js');
 
 describe('validate', function() {
@@ -36,6 +35,6 @@ describe('validate', function() {
 			}, {
 				foo: {type: 'integer', validate: validate}
 			}, {throwError: true});
-		}).to.throwError(/property `foo` hasn\'t pass check/);
+		}).to.throwError(/property `foo` hasn't pass check/);
 	});
 });

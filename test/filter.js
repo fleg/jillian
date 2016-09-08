@@ -1,7 +1,6 @@
 'use strict';
 
 var jillian = require('../index.js'),
-	_ = require('underscore'),
 	expect = require('expect.js');
 
 describe('filter', function() {
