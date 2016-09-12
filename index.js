@@ -70,8 +70,8 @@ module.exports = function(instance, schema, options) {
 				}
 			}
 
-			if (typeof schema.filter === 'function') {
-				instance[property] = schema.filter(instance[property]);
+			if (typeof schema.modifier === 'function') {
+				instance[property] = schema.modifier(instance[property]);
 			}
 		},
 		throwError: options.throwError

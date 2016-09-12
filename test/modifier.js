@@ -3,12 +3,12 @@
 var jillian = require('../index.js'),
 	expect = require('expect.js');
 
-describe('filter', function() {
-	var filter = function(val) {
+describe('modifier', function() {
+	var modifier = function(val) {
 		return val + 100;
 	};
 
-	it('should be ok without filter', function() {
+	it('should be ok without modifier', function() {
 		expect(function() {
 			jillian(
 				{foo: 1},
@@ -18,12 +18,12 @@ describe('filter', function() {
 		}).to.not.throwError();
 	});
 
-	it('should be ok with filter', function() {
+	it('should be ok with modifier', function() {
 		expect(function() {
 			var obj = {foo: 1};
 			jillian(
 				obj,
-				{properties: {foo: {type: 'integer', filter: filter}}},
+				{properties: {foo: {type: 'integer', modifier: modifier}}},
 				{throwError: true}
 			);
 			expect(obj.foo).to.equal(101);
